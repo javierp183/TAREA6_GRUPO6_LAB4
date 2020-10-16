@@ -11,6 +11,12 @@
  <a href="AgregarSeguro.jsp"> Agregar Seguro</a>
  <a href="ListarSeguros.jsp"> Listar Seguros</a>
  
+ <h1>"Tipo de seguros de la base de datos"</h1>
+ 
+ <form>
+ Busqueda por tipo de Seguros: <input type="submit" name="drpNombre" value="Filtrar"></input>
+ </form>
+ 
  
  <table border="1">
 	<tr><th>ID Seguro</th> <th>Descripcion seguro</th> <th>Descripcion tipo seguro</th> <th>Costo Contratacion</th>  <th>Costo máximo asegurado</th></tr>
