@@ -10,5 +10,10 @@
  <a href="Inicio.jsp">Inicio </a>
  <a href="AgregarSeguro.jsp"> Agregar Seguro</a>
  <a href="ListarSeguros.jsp"> Listar Seguros</a>
+ 
+ 
+ <table border="1">
+	<tr><th>ID Seguro</th> <th>Descripcion seguro</th> <th>Descripcion tipo seguro</th> <th>Costo Contratacion</th>  <th>Costo máximo asegurado</th></tr>
+</table>
 </body>
 </html>
