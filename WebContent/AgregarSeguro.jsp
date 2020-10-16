@@ -11,6 +11,14 @@
  <a href="AgregarSeguro.jsp"> Agregar Seguro</a>
  <a href="ListarSeguros.jsp"> Listar Seguros</a>
  
- 
+<form action="" method="">
+Descripcion:			<input type="text" name="txtDescripcion"> <br>
+Tipo de Seguro:			<input type="text" name="txtTipoSeguro"> <br>
+Costo contratación:		<input type="text" name="txtCostoContratacion"> <br>
+Costo máximo asegurado:	<input type="text" name="txtCostoMaxAsegurado"> <br>
+<input type="submit" value="Aceptar" name="btnAceptar">
+</form>
+
+
 </body>
 </html>

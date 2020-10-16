@@ -6,7 +6,7 @@ import java.sql.Statement;
 public class SeguroDao {
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
-	private String pass = "0000";
+	private String pass = "password";
 	private String dbName = "SegurosGroup";
 	
 	
