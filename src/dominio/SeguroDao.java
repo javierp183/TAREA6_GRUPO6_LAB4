@@ -1,10 +1,14 @@
 package dominio;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class SeguroDao {
+	//recordar cambiar usuario-password dependiendo del acceso a la base de desarrollo
+	
 	private String host = "jdbc:mysql://localhost:3306/";
 	private String user = "root";
 	private String pass = "password";
@@ -17,7 +21,8 @@ public class SeguroDao {
 	
 	
 	
-	public int agregarSeguro(int id, String descripcion, String tiposeguro, int costocontratacion, int costomax ) {
+	//public int agregarSeguro(int id, String descripcion, String tiposeguro, int costocontratacion, int costomax ) {
+	public int agregarSeguro(Seguro seguro) {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -25,10 +30,11 @@ public class SeguroDao {
 			e.printStackTrace();
 		}
 		
-		
-		
-		String query = "INSERT INTO seguros(idSeguro, descripcion, idTipo, costoContratacion, costoAsegurado) VALUES "
-				+ "('"+ id + "','" + descripcion + "','" + tiposeguro  + "','" + costocontratacion  + "','" +costomax + "')";
+		String query = "Insert into usuario(idSeguro, descripcion, idTipo, costoContratacion, costoAsegurado) values "
+				+ "('"+seguro.getId()+"','"+seguro.getDescripcion()+"','"+seguro.getTipoSeguro()+"','"+seguro.getCostoContratacion()+"','"+seguro.getCostoMaximoAsegurado()+"')";
+
+//		String query = "INSERT INTO seguros(idSeguro, descripcion, idTipo, costoContratacion, costoAsegurado) VALUES "
+//				+ "('"+ id + "','" + descripcion + "','" + tiposeguro  + "','" + costocontratacion  + "','" +costomax + "')";
 		
 		Connection cn = null;
 		int filas=0;
@@ -68,6 +74,46 @@ public class SeguroDao {
 		
 		
 		return filas;
+	}
+
+	public ArrayList<Seguro> obtenerTodosLosSeguros()
+	{
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		ArrayList<Seguro> lSeguro = new ArrayList<Seguro>();
+		Connection cn = null;
+		try
+		{
+			cn = DriverManager.getConnection(host+dbName,user,pass);
+			String query = "Select * from seguros";
+			Statement st = cn.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			while(rs.next())
+			{
+				Seguro x = new Seguro();
+				x.setId(rs.getInt("idSeguro"));
+				x.setDescripcion(rs.getString("descripcion"));
+				x.setTipoSeguro(rs.getString("idTipo"));
+				x.setCostoContratacion(Float.parseFloat(rs.getString("costoContratacion")));
+				x.setCostoMaximoAsegurado(Float.parseFloat(rs.getString("costAsegurado")));
+				
+				
+				lSeguro.add(x);
+			}
+			
+			
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		return lSeguro;
+		
 	}
 	
 	public int listarSegurosParticular(int tipo ) {

@@ -1,6 +1,7 @@
 package dominio;
 
 public class Seguro {
+	private static int incremental = 0;
 	private int id;
 	private String Descripcion;
 	private String TipoSeguro;
@@ -14,7 +15,7 @@ public class Seguro {
 	
 	public Seguro(int id, String Descripcion, String TipoSeguro,float CostoContratacion, float CostoMaximoAsegurado) {
 		super();
-		this.id = id;
+		this.id = incremental++;
 		this.Descripcion = Descripcion;
 		this.TipoSeguro = TipoSeguro;
 		this.CostoContratacion = CostoContratacion;
