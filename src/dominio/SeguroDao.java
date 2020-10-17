@@ -31,11 +31,8 @@ public class SeguroDao {
 		}
 		
 		String query = "Insert into usuario(idSeguro, descripcion, idTipo, costoContratacion, costoAsegurado) values "
-				+ "('"+seguro.getId()+"','"+seguro.getDescripcion()+"','"+seguro.getTipoSeguro()+"','"+seguro.getCostoContratacion()+"','"+seguro.getCostoMaximoAsegurado()+"')";
+				+ "('"+seguro.getId()+"','"+seguro.getDescripcion()+"','"+seguro.getIdTipo()+"','"+seguro.getCostoContratacion()+"','"+seguro.getCostoMaximoAsegurado()+"')";
 
-//		String query = "INSERT INTO seguros(idSeguro, descripcion, idTipo, costoContratacion, costoAsegurado) VALUES "
-//				+ "('"+ id + "','" + descripcion + "','" + tiposeguro  + "','" + costocontratacion  + "','" +costomax + "')";
-		
 		Connection cn = null;
 		int filas=0;
 		
@@ -51,7 +48,8 @@ public class SeguroDao {
 		return filas;
 	}
 	
-	public int listarSegurosCompleto( ) {
+	public ArrayList<TipoSeguro> listarTodosLosSeguros()
+	{
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -59,21 +57,30 @@ public class SeguroDao {
 			e.printStackTrace();
 		}
 		
-		String query = "SELECT * from seguros";
+		String query = "SELECT * from tipoSeguros";
 		
 		Connection cn = null;
 		int filas=0;
+		ArrayList<TipoSeguro> lTipoSeguro = new ArrayList<TipoSeguro>();
 		
 		try {
 			cn = DriverManager.getConnection(host+dbName,user,pass);
 			Statement st = cn.createStatement();
+			ResultSet rs = st.executeQuery(query);
 			filas = st.executeUpdate(query);
+			while(rs.next())
+			{
+				TipoSeguro x = new TipoSeguro();
+				x.setId(rs.getInt("id"));
+				x.setTipoSeguro(rs.getString("descripcion"));
+				lTipoSeguro.add(x);
+			}
 		}
 		catch(Exception e) { e.printStackTrace();  }
 		
 		
 		
-		return filas;
+		return lTipoSeguro;
 	}
 
 	public ArrayList<Seguro> obtenerTodosLosSeguros()
@@ -97,10 +104,9 @@ public class SeguroDao {
 				Seguro x = new Seguro();
 				x.setId(rs.getInt("idSeguro"));
 				x.setDescripcion(rs.getString("descripcion"));
-				x.setTipoSeguro(rs.getString("idTipo"));
+				x.setIdTipo(rs.getInt("idTipo"));
 				x.setCostoContratacion(Float.parseFloat(rs.getString("costoContratacion")));
 				x.setCostoMaximoAsegurado(Float.parseFloat(rs.getString("costAsegurado")));
-				
 				
 				lSeguro.add(x);
 			}

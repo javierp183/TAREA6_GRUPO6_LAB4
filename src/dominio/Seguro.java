@@ -4,20 +4,20 @@ public class Seguro {
 	private static int incremental = 0;
 	private int id;
 	private String Descripcion;
-	private String TipoSeguro;
 	private float CostoContratacion;
 	private float CostoMaximoAsegurado;
+	private int IdTipo;
 	
 	public Seguro()
 	{
 		
 	}
 	
-	public Seguro(int id, String Descripcion, String TipoSeguro,float CostoContratacion, float CostoMaximoAsegurado) {
+	public Seguro(int id, String Descripcion, int IdTipo,float CostoContratacion, float CostoMaximoAsegurado) {
 		super();
 		this.id = incremental++;
 		this.Descripcion = Descripcion;
-		this.TipoSeguro = TipoSeguro;
+		this.IdTipo = IdTipo;
 		this.CostoContratacion = CostoContratacion;
 		this.CostoMaximoAsegurado = CostoMaximoAsegurado;
 	}
@@ -38,12 +38,12 @@ public class Seguro {
 		Descripcion = descripcion;
 	}
 
-	public String getTipoSeguro() {
-		return TipoSeguro;
+	public int getIdTipo() {
+		return IdTipo;
 	}
 
-	public void setTipoSeguro(String tipoSeguro) {
-		TipoSeguro = tipoSeguro;
+	public void setIdTipo(int IdTipo) {
+		IdTipo = IdTipo;
 	}
 
 	public float getCostoContratacion() {
@@ -64,7 +64,7 @@ public class Seguro {
 
 	@Override
 	public String toString() {
-		return "Seguro [id=" + id + ", Descripcion=" + Descripcion + ", TipoSeguro=" + TipoSeguro
+		return "Seguro [id=" + id + ", Descripcion=" + Descripcion + ", IdTipo=" + IdTipo
 				+ ", CostoContratacion=" + CostoContratacion + ", CostoMaximoAsegurado=" + CostoMaximoAsegurado + "]";
 	}
 	
