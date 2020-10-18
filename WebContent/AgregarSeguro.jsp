@@ -1,4 +1,5 @@
 <%@ page import="dominio.SeguroDao" %>
+<%@ page import="dominio.Seguro" %>
 <%@ page import="dominio.TipoSeguro" %>
 <%@ page import="dominio.TipoSeguroDao" %>
 <%@ page import="java.util.ArrayList" %>
@@ -19,18 +20,45 @@
 
 TipoSeguroDao tsdao = new TipoSeguroDao();
 
+SeguroDao sdao = new SeguroDao();
+
 ArrayList<TipoSeguro> listaTipoSeguros = null;
+
+ArrayList<Seguro> listaSeguros = null;
 
 listaTipoSeguros = tsdao.listarTodosLosSeguros();
 
+listaSeguros = sdao.obtenerTodosLosSeguros();
+
 %>
 
- 
-<form action="" method="">
+<%
+int IdSeguro = 0;
+if(listaSeguros!=null)
+for(Seguro seguro : listaSeguros)
+{
+	if(seguro.getIdSeguro()!=0)
+	{
+		 IdSeguro = seguro.getIdSeguro();
+	}
+	else
+	{
+		IdSeguro = 1;
+	}
+}
 
+IdSeguro = IdSeguro + 1;
+%>
+
+
+
+<form action="servletSeguro" method="get">
+	
+Id Seguro: <%=IdSeguro%> <input type="hidden" name="txtIdSeguro" value=<%=IdSeguro%>> <br>
+Descripcion:			<input type="text" name="txtDescripcion"> <br>
 Tipo de Seguro:			
 
-	<select name="Tipo de Seguro" id="idTipoSeguro">
+	<select name="lblTipoSeguro" id="idTipoSeguro">
 	<% 
 	if(listaTipoSeguros!=null)
 	for(TipoSeguro tiposeguro : listaTipoSeguros)
@@ -41,10 +69,6 @@ Tipo de Seguro:
 	
 	<% } %>
 	</select> <br>
-	
-
-Descripcion:			<input type="text" name="txtDescripcion"> <br>
-Tipo de Seguro:			<input type="text" name="txtTipoSeguro"> <br>
 Costo contratación:		<input type="text" name="txtCostoContratacion"> <br>
 Costo máximo asegurado:	<input type="text" name="txtCostoMaxAsegurado"> <br>
 <input type="submit" value="Aceptar" name="btnAceptar">

@@ -29,7 +29,7 @@ public class SeguroDao {
 		}
 		
 		String query = "Insert into usuario(idSeguro, descripcion, idTipo, costoContratacion, costoAsegurado) values "
-				+ "('"+seguro.getId()+"','"+seguro.getDescripcion()+"','"+seguro.getIdTipo()+"','"+seguro.getCostoContratacion()+"','"+seguro.getCostoMaximoAsegurado()+"')";
+				+ "('"+seguro.getIdSeguro()+"','"+seguro.getDescripcion()+"','"+seguro.getIdTipo()+"','"+seguro.getCostoContratacion()+"','"+seguro.getCostoMaximoAsegurado()+"')";
 
 		Connection cn = null;
 		int filas=0;
@@ -65,7 +65,6 @@ public class SeguroDao {
 			cn = DriverManager.getConnection(host+dbName,user,pass);
 			Statement st = cn.createStatement();
 			ResultSet rs = st.executeQuery(query);
-			filas = st.executeUpdate(query);
 			while(rs.next())
 			{
 				TipoSeguro x = new TipoSeguro();
@@ -89,6 +88,7 @@ public class SeguroDao {
 			e.printStackTrace();
 		}
 		
+		System.out.println("lista todos los seguros");
 		ArrayList<Seguro> lSeguro = new ArrayList<Seguro>();
 		Connection cn = null;
 		try
@@ -100,7 +100,7 @@ public class SeguroDao {
 			while(rs.next())
 			{
 				Seguro x = new Seguro();
-				x.setId(rs.getInt("idSeguro"));
+				x.setIdSeguro(rs.getInt("idSeguro"));
 				x.setDescripcion(rs.getString("descripcion"));
 				x.setIdTipo(rs.getInt("idTipo"));
 				x.setCostoContratacion(Float.parseFloat(rs.getString("costoContratacion")));

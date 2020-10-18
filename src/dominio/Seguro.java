@@ -1,8 +1,7 @@
 package dominio;
 
 public class Seguro {
-	private static int incremental = 0;
-	private int id;
+	private int idSeguro;
 	private String Descripcion;
 	private float CostoContratacion;
 	private float CostoMaximoAsegurado;
@@ -13,21 +12,21 @@ public class Seguro {
 		
 	}
 	
-	public Seguro(int id, String Descripcion, int IdTipo,float CostoContratacion, float CostoMaximoAsegurado) {
+	public Seguro(int idSeguro, String Descripcion, int IdTipo,float CostoContratacion, float CostoMaximoAsegurado) {
 		super();
-		this.id = incremental++;
+		this.idSeguro = idSeguro;
 		this.Descripcion = Descripcion;
 		this.IdTipo = IdTipo;
 		this.CostoContratacion = CostoContratacion;
 		this.CostoMaximoAsegurado = CostoMaximoAsegurado;
 	}
 
-	public int getId() {
-		return id;
+	public int getIdSeguro() {
+		return idSeguro;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdSeguro(int idSeguro) {
+		this.idSeguro = idSeguro;
 	}
 
 	public String getDescripcion() {
@@ -64,9 +63,17 @@ public class Seguro {
 
 	@Override
 	public String toString() {
-		return "Seguro [id=" + id + ", Descripcion=" + Descripcion + ", IdTipo=" + IdTipo
-				+ ", CostoContratacion=" + CostoContratacion + ", CostoMaximoAsegurado=" + CostoMaximoAsegurado + "]";
+		return "Seguro [idSeguro=" + idSeguro + ", Descripcion=" + Descripcion + ", CostoContratacion="
+				+ CostoContratacion + ", CostoMaximoAsegurado=" + CostoMaximoAsegurado + ", IdTipo=" + IdTipo + "]";
 	}
+	
+	
+
+//	@Override
+//	public String toString() {
+//		return "Seguro [id=" + id + ", Descripcion=" + Descripcion + ", IdTipo=" + IdTipo
+//				+ ", CostoContratacion=" + CostoContratacion + ", CostoMaximoAsegurado=" + CostoMaximoAsegurado + "]";
+//	}
 	
 
 }
