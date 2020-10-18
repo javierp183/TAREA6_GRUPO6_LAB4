@@ -19,9 +19,7 @@ public class SeguroDao {
 		
 	}
 	
-	
-	
-	//public int agregarSeguro(int id, String descripcion, String tiposeguro, int costocontratacion, int costomax ) {
+
 	public int agregarSeguro(Seguro seguro) {
 		
 		try {
