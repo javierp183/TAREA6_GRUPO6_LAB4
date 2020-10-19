@@ -39,13 +39,14 @@ public class servletSeguro extends HttpServlet {
 //			// int id = Integer.parseInt(request.getParameter("txtDescripcion"));
 			String IdSeguro = request.getParameter("txtIdSeguro");
 			String Descripcion = request.getParameter("txtDescripcion");
-			String TipoSeguro = request.getParameter("lblTipoSeguro");
+			String TipoSeguro = request.getParameter("txtTipoSeguro");
 			String CostoContratacion = request.getParameter("txtCostoContratacion");
 			String CostoMaxContratacion = request.getParameter("txtCostoMaxAsegurado");
 			Seguro seguro = new Seguro();
 			SeguroDao sdao = new SeguroDao();
+			System.out.println("aca tiene que salir el tipo de seguro:");
 			System.out.println(TipoSeguro);
-			
+
 			seguro.setIdSeguro(Integer.parseInt(IdSeguro));
 			seguro.setIdTipo(Integer.parseInt(TipoSeguro));
 			seguro.setDescripcion(Descripcion);
@@ -58,10 +59,7 @@ public class servletSeguro extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("AgregarSeguro.jsp");
 			rd.forward(request, response);
 		}
-		
 
-//		RequestDispatcher rd = request.getRequestDispatcher("/ejemplo3.jsp");
-//		rd.forward(request, response);	
 	}
 
 	/**

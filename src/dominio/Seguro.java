@@ -42,7 +42,7 @@ public class Seguro {
 	}
 
 	public void setIdTipo(int IdTipo) {
-		IdTipo = IdTipo;
+		this.IdTipo = IdTipo;
 	}
 
 	public float getCostoContratacion() {

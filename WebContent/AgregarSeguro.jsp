@@ -58,7 +58,7 @@ Id Seguro: <%=IdSeguro%> <input type="hidden" name="txtIdSeguro" value=<%=IdSegu
 Descripcion:			<input type="text" name="txtDescripcion"> <br>
 Tipo de Seguro:			
 
-	<select name="lblTipoSeguro" id="idTipoSeguro">
+	<select name="txtTipoSeguro" id="idTipoSeguro">
 	<% 
 	if(listaTipoSeguros!=null)
 	for(TipoSeguro tiposeguro : listaTipoSeguros)
