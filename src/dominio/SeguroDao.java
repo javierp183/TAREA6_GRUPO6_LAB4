@@ -28,7 +28,7 @@ public class SeguroDao {
 			e.printStackTrace();
 		}
 		
-		String query = "Insert into usuario(idSeguro, descripcion, idTipo, costoContratacion, costoAsegurado) values "
+		String query = "Insert into seguros(idSeguro, descripcion, idTipo, costoContratacion, costoAsegurado) values "
 				+ "('"+seguro.getIdSeguro()+"','"+seguro.getDescripcion()+"','"+seguro.getIdTipo()+"','"+seguro.getCostoContratacion()+"','"+seguro.getCostoMaximoAsegurado()+"')";
 
 		Connection cn = null;
@@ -104,7 +104,7 @@ public class SeguroDao {
 				x.setDescripcion(rs.getString("descripcion"));
 				x.setIdTipo(rs.getInt("idTipo"));
 				x.setCostoContratacion(Float.parseFloat(rs.getString("costoContratacion")));
-				x.setCostoMaximoAsegurado(Float.parseFloat(rs.getString("costAsegurado")));
+				x.setCostoMaximoAsegurado(Float.parseFloat(rs.getString("costoAsegurado")));
 				
 				lSeguro.add(x);
 			}

@@ -37,28 +37,26 @@ public class servletSeguro extends HttpServlet {
 		{
 			System.out.println("Agregando Seguro");
 //			// int id = Integer.parseInt(request.getParameter("txtDescripcion"));
+			String IdSeguro = request.getParameter("txtIdSeguro");
 			String Descripcion = request.getParameter("txtDescripcion");
-			int TipoSeguro = Integer.parseInt(request.getParameter("lblTipoSeguro"));
+			String TipoSeguro = request.getParameter("lblTipoSeguro");
 			String CostoContratacion = request.getParameter("txtCostoContratacion");
 			String CostoMaxContratacion = request.getParameter("txtCostoMaxAsegurado");
 			Seguro seguro = new Seguro();
-//			SeguroDao sdao = new SeguroDao();
-			System.out.println(Descripcion);
+			SeguroDao sdao = new SeguroDao();
 			System.out.println(TipoSeguro);
-			System.out.println(CostoContratacion);
-			System.out.println(CostoMaxContratacion);
 			
-			seguro.setIdSeguro(100);
-			seguro.setIdTipo(TipoSeguro);
+			seguro.setIdSeguro(Integer.parseInt(IdSeguro));
+			seguro.setIdTipo(Integer.parseInt(TipoSeguro));
 			seguro.setDescripcion(Descripcion);
 			seguro.setCostoContratacion(Float.parseFloat(CostoContratacion));
 			seguro.setCostoMaximoAsegurado(Float.parseFloat(CostoMaxContratacion));
 			
-			//filas=sdao.agregarSeguro(seguro);
+			filas=sdao.agregarSeguro(seguro);
 			
-	
-//			RequestDispatcher rd = request.getRequestDispatcher("/ejemplo2.jsp");
-//			rd.forward(request, response);
+			request.setAttribute("cantFilas", filas);
+			RequestDispatcher rd = request.getRequestDispatcher("AgregarSeguro.jsp");
+			rd.forward(request, response);
 		}
 		
 

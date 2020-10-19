@@ -74,5 +74,18 @@ Costo máximo asegurado:	<input type="text" name="txtCostoMaxAsegurado"> <br>
 <input type="submit" value="Aceptar" name="btnAceptar">
 </form>
 
+<%
+int filas=0;
+if(request.getAttribute("cantFilas") != null)
+{
+	filas=	Integer.parseInt(request.getAttribute("cantFilas").toString());
+}
+%>
+
+<% if(filas==1)
+{ %>
+	Seguro agregado con exito
+<%} %>
+
 </body>
 </html>
