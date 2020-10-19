@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -66,8 +67,16 @@ public class servletSeguro extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		RequestDispatcher rd = request.getRequestDispatcher("/ejemplo3.jsp");
+		
+		if(request.getParameter("drpNombre")!=null)
+		{
+			String TipoSeguro = request.getParameter("txtTipoSeguro");
+			SeguroDao sdao = new SeguroDao();
+			ArrayList<Seguro> lista = sdao.listarSegurosPorTipoDeSeguro(Integer.parseInt(TipoSeguro));
+			request.setAttribute("listau", lista);
+			System.out.println(lista);
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("ListarSeguros.jsp");
 		rd.forward(request, response);	
 	}
 

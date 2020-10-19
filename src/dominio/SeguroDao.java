@@ -120,7 +120,7 @@ public class SeguroDao {
 		
 	}
 	
-	public int listarSegurosParticular(int tipo ) {
+	public ArrayList<Seguro> listarSegurosPorTipoDeSeguro(int tipo) {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -128,22 +128,36 @@ public class SeguroDao {
 			e.printStackTrace();
 		}
 		
-		
-		String query = "SELECT * from seguros WHERE idTipo=" + tipo ;
+		ArrayList<Seguro> lSeguro = new ArrayList<Seguro>();
 		
 		Connection cn = null;
-		int filas=0;
-		
-		try {
+		try
+		{
 			cn = DriverManager.getConnection(host+dbName,user,pass);
+			String query = "SELECT * from seguros WHERE idTipo=" + tipo ;
 			Statement st = cn.createStatement();
-			filas = st.executeUpdate(query);
+			ResultSet rs = st.executeQuery(query);
+			while(rs.next())
+			{
+				Seguro x = new Seguro();
+				x.setIdSeguro(rs.getInt("idSeguro"));
+				x.setDescripcion(rs.getString("descripcion"));
+				x.setIdTipo(rs.getInt("idTipo"));
+				x.setCostoContratacion(Float.parseFloat(rs.getString("costoContratacion")));
+				x.setCostoMaximoAsegurado(Float.parseFloat(rs.getString("costoAsegurado")));
+				
+				lSeguro.add(x);
+			}
+			
+			
 		}
-		catch(Exception e) { e.printStackTrace();  }
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		
-		
-		
-		return filas;
+		return lSeguro;
+
 	}
 	
 	

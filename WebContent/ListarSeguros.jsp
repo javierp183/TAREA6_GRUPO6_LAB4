@@ -28,15 +28,28 @@ ArrayList<Seguro> listaSeguros = null;
 
 listaTipoSeguros = tsdao.listarTodosLosSeguros();
 
-listaSeguros = sdao.obtenerTodosLosSeguros();
-
+if(request.getAttribute("listau")!=null)
+{
+	listaSeguros = (ArrayList<Seguro>) request.getAttribute("listau");
+}
 %>
  
  <h1>"Tipo de seguros de la base de datos"</h1>
  
- <form>
- Busqueda por tipo de Seguros: <input type="submit" name="drpNombre" value="Filtrar"></input>
- </form>
+ <form action="servletSeguro" method="post">
+ Busqueda por tipo de Seguros: 
+ 
+ 	<select name="txtTipoSeguro" id="idTipoSeguro">
+	<% 
+	if(listaTipoSeguros!=null)
+	for(TipoSeguro tiposeguro : listaTipoSeguros)
+	{
+	%>
+	
+	<option value=<%=tiposeguro.getId()%>><%=tiposeguro.getTipoSeguro()%></option>
+	
+	<% } %>
+	</select> <input type="submit" name="drpNombre" value="Filtrar"></input> <br>
  
  
  <table border="1">
@@ -49,6 +62,7 @@ listaSeguros = sdao.obtenerTodosLosSeguros();
 	<tr> <td><%=seguro.getIdSeguro()%></td> <td><%=seguro.getDescripcion()%></td> <td><%=seguro.getIdTipo() %></td> <td><%=seguro.getCostoContratacion()%></td> <td><%=seguro.getCostoMaximoAsegurado() %></td></tr>
 	<% } %>
 </table>
+ </form>
 
 
 </body>
